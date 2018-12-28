@@ -4,7 +4,9 @@ package com.yourcompany.Tests;
  * Created by mehmetgerceker on 12/21/15.
  */
 
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.junit.ConcurrentParameterized;
@@ -118,6 +120,15 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
      * @throws Exception if an error occurs during the creation of the {@link RemoteWebDriver}
      *                   instance.
      */
+//Creates a timestamp to use for build number
+   // Date date= new Date();
+   // long time = date.getTime();
+   // Timestamp ts = new Timestamp(time);
+
+  SimpleDateFormat f = new SimpleDateFormat("yyyyMMddHHmm");
+  String ts = f.format(new Date());
+
+
     @Before
     public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -126,8 +137,9 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         capabilities.setCapability("platformVersion", this.platformVersion);
         capabilities.setCapability("deviceName", this.deviceName);
         capabilities.setCapability("deviceOrientation", this.deviceOrientation);
-        capabilities.setCapability("appiumVersion", this.appiumVersion);
-        capabilities.setCapability("app", app);
+        capabilities.setCapability("appiumVersion", "1.9.1");
+        capabilities.setCapability("app", "sauce-storage:GuineaPigApp-debug.apk");
+        capabilities.setCapability("build", ts);
 
 
         String methodName = name.getMethodName();
