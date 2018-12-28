@@ -121,12 +121,9 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
      *                   instance.
      */
 //Creates a timestamp to use for build number
-   // Date date= new Date();
-   // long time = date.getTime();
-   // Timestamp ts = new Timestamp(time);
 
-  SimpleDateFormat f = new SimpleDateFormat("yyyyMMddHHmm");
-  String ts = f.format(new Date());
+    SimpleDateFormat f = new SimpleDateFormat("yyyyMMddHHmm");
+    String ts = f.format(new Date());
 
 
     @Before
